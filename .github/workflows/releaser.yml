@@ -8,6 +8,12 @@ on:
         required: false
         type: string
         default: ''
+      docker_user:
+        required: true
+        type: string
+      docker_token:
+          required: true
+          type: string
   push:
     tags:
       # so a vX.Y.Z-test1 doesn't trigger build
@@ -35,8 +41,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # pin@v2
         with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ inputs.docker_user || secrets.DOCKER_USER }}
+          password: ${{ inputs.docker_token || secrets.DOCKER_TOKEN }}
       - name: "GoReleaser Action"
         uses: goreleaser/goreleaser-action@7ec5c2b0c6cdda6e8bbb49444bc797dd33d74dd8 # pin@v5.0.0
         with:
