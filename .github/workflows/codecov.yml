@@ -1,6 +1,7 @@
 name: "Code Coverage"
 
 on:
+  workflow_call:
   push:
     branches: [ main ]
   pull_request:
@@ -13,7 +14,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-go@v5
       with:
-          go-version: 'stable'
+          go-version: '1.21'
           check-latest: true
     - name: Run test coverage
       run: go test -race -coverprofile=coverage.out -covermode=atomic ./...
