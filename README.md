@@ -30,7 +30,8 @@ jobs:
     call-releaser:
         uses: fortio/workflows/.github/workflows/releaser.yml@main
         with:
-            description: "Fortio multi curl"
+            ### *** Don't forget to update this: *** ###
+            description: "Fortio ...update description...."
         secrets:
             GH_PAT: ${{ secrets.GH_PAT }}
             DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
