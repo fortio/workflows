@@ -51,7 +51,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --clean --config ../cfg/goreleaser.yaml
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           TAP_DESCRIPTION: ${{ inputs.description }}
