@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Download goreleaser config
-        run: curl .goreleaser.yaml https://raw.githubusercontent.com/fortio/workflows/main/goreleaser.yaml
+        run: curl -fsS -o .goreleaser.yaml https://raw.githubusercontent.com/fortio/workflows/main/goreleaser.yaml
       - name: "GoReleaser Action"
         uses: goreleaser/goreleaser-action@7ec5c2b0c6cdda6e8bbb49444bc797dd33d74dd8 # pin@v5.0.0
         with:
