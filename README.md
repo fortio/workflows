@@ -36,7 +36,7 @@ jobs:
 Or for a library
 
 ```yaml
-# Same as full workflow (eg from fortio/multicurl) but without the goreleaser step
+# Same as full workflow (eg from fortio/logc) but without the goreleaser step
 name: "Shared library fortio workflows"
 
 on:
@@ -54,6 +54,6 @@ jobs:
         uses: fortio/workflows/.github/workflows/codeql-analysis.yml@main
 ```
 
-Sample conversion for server/cli: https://github.com/fortio/multicurl/pull/139
+Sample conversion for server/cli: https://github.com/fortio/logc/pull/44/files
 
 For a library: https://github.com/fortio/sets/pull/64
