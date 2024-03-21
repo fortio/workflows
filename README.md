@@ -23,6 +23,10 @@ jobs:
         uses: fortio/workflows/.github/workflows/codecov.yml@main
     call-codeql:
         uses: fortio/workflows/.github/workflows/codeql-analysis.yml@main
+        permissions:
+            actions: read
+            contents: read
+            security-events: write
     call-releaser:
         uses: fortio/workflows/.github/workflows/releaser.yml@main
         with:
@@ -52,6 +56,10 @@ jobs:
         uses: fortio/workflows/.github/workflows/codecov.yml@main
     call-codeql:
         uses: fortio/workflows/.github/workflows/codeql-analysis.yml@main
+        permissions:
+            actions: read
+            contents: read
+            security-events: write
 ```
 
 Sample conversion for server/cli: https://github.com/fortio/logc/pull/44/files
