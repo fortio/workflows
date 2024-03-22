@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Common Setup
-        uses: fortio/workflows/.github/actions/common_setup@main
+        uses: fortio/workflows/.github/actions/common_setup@buildx_platforms
         with:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
