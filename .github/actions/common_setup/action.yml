@@ -7,6 +7,10 @@ inputs: # Seems we can't use secrets in action.yml
   DOCKER_TOKEN:
     description: 'Docker Hub password'
     required: true
+outputs:
+  platforms:
+    description: 'Available platforms'
+    value: ${{ steps.buildx.outputs.platforms }}
 runs:
   using: 'composite'
   steps:
