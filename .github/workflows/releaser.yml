@@ -20,8 +20,8 @@ on:
       # so a vX.Y.Z-test1 doesn't trigger build
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+-pre*'
-  pull_request: # To test
-    branches: [ main ]
+#  pull_request: # To test
+#    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Common Setup
         id: common_setup
-        uses: fortio/workflows/.github/actions/common_setup@buildx_platforms
+        uses: fortio/workflows/.github/actions/common_setup@main
         with:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
