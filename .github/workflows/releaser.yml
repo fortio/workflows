@@ -20,6 +20,8 @@ on:
       # so a vX.Y.Z-test1 doesn't trigger build
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+-pre*'
+#  pull_request: # To test
+#    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,22 +30,16 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # pin@v3
+      - name: Common Setup
+        uses: fortio/workflows/.github/actions/common_setup@main
         with:
-          fetch-depth: 0
-      - uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # pin@v1
-      - uses: docker/setup-buildx-action@2b51285047da1547ffb1b2203d8be4c0af6b1f20 # pin@v1
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       - name: Set up Go
         uses: actions/setup-go@v5 # pin@v3
         with:
           go-version: '1.21'
           check-latest: true
-      - name: Log in to Docker Hub
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # pin@v2
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKEN }}
       - name: Download goreleaser config
         run: curl -fsS -o .goreleaser.yaml https://raw.githubusercontent.com/fortio/workflows/main/goreleaser.yaml
       - name: "GoReleaser Action"
