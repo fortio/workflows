@@ -1,5 +1,12 @@
 name: 'Common Setup'
 description: 'Common setup steps for build related workflows'
+inputs: # Seems we can't use secrets in action.yml
+  DOCKER_USER:
+    description: 'Docker Hub username'
+    required: true
+  DOCKER_TOKEN:
+    description: 'Docker Hub password'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -12,5 +19,5 @@ runs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_TOKEN }}
+        username: ${{ inputs.DOCKER_USER }}
+        password: ${{ inputs.DOCKER_TOKEN }}
