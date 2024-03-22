@@ -31,10 +31,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Common Setup
+        id: common_setup
         uses: fortio/workflows/.github/actions/common_setup@buildx_platforms
         with:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      - name: Available platforms
+        run: echo ${{ steps.common_setup.outputs.platforms }}
       - name: Set up Go
         uses: actions/setup-go@v5 # pin@v3
         with:

@@ -21,6 +21,7 @@ runs:
       run: |
         echo "Platforms ${{ steps.buildx.outputs.platforms }}"
         echo "platforms=${{ steps.buildx.outputs.platforms }}" >> $GITHUB_OUTPUT
+      shell: bash
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
