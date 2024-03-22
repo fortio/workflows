@@ -28,6 +28,7 @@ jobs:
             contents: read
             security-events: write
     call-releaser:
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         uses: fortio/workflows/.github/workflows/releaser.yml@main
         with:
             ### *** Don't forget to update this: *** ###
