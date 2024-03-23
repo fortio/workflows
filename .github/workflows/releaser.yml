@@ -56,3 +56,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           TAP_DESCRIPTION: ${{ inputs.description }}
+          GOWORK: off
