@@ -19,7 +19,7 @@ jobs:
     - name: Optional init
       run: make dependencies || true # Used in fortio for instance to prep for go tests
     - name: Run test coverage
-      run: go test -race -coverprofile=coverage.out -covermode=atomic ./...
+      run: go test -coverprofile=coverage.out ./...
     - uses: codecov/codecov-action@v3
       with:
         files: coverage.out
