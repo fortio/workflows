@@ -27,3 +27,7 @@ jobs:
         run: curl -fsS -o .golangci.yml https://raw.githubusercontent.com/fortio/workflows/main/golangci.yml
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@3cfe3a4abbb849e10058ce4af15d205b6da42804 # pin@v3
+      - name: Optional init
+        run: make dependencies || true # Used in fortio for instance to prep for go tests
+      - name: Run tests with race detector
+        run: go test -race ./...
