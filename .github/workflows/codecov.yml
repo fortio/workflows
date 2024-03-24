@@ -2,6 +2,9 @@ name: "Code Coverage"
 
 on:
   workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+          required: true
   push:
     branches: [ main ]
   pull_request:
@@ -23,3 +26,4 @@ jobs:
     - uses: codecov/codecov-action@v4
       with:
         files: coverage.out
+        token: ${{ secrets.CODECOV_TOKEN }}
