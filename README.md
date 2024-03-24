@@ -67,3 +67,14 @@ jobs:
 Sample conversion for server/cli: https://github.com/fortio/logc/pull/44/files
 
 For a library: https://github.com/fortio/sets/pull/64
+
+Dependabot will regularly update pinned github actions - to pin a new dependency:
+
+Use https://github.com/mheap/pin-github-action
+```
+npm install -g pin-github-action
+```
+for each action:
+```
+pin-github-action .github/workflows/...yml
+```

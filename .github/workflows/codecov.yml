@@ -11,15 +11,15 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-go@v5
-      with:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
           go-version: '1.21'
           check-latest: true
-    - name: Optional init
-      run: make dependencies || true # Used in fortio for instance to prep for go tests
-    - name: Run test coverage
-      run: go test -coverprofile=coverage.out ./...
-    - uses: codecov/codecov-action@v3
-      with:
-        files: coverage.out
+      - name: Optional init
+        run: make dependencies || true # Used in fortio for instance to prep for go tests
+      - name: Run test coverage
+        run: go test -coverprofile=coverage.out ./...
+      - uses: codecov/codecov-action@v3
+        with:
+          files: coverage.out
