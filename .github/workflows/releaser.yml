@@ -21,8 +21,8 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+-pre'
       - 'v[0-9]+.[0-9]+.[0-9]+\+'
-#  pull_request: # To test
-#    branches: [ main ]
+  pull_request: # To test
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Common Setup
         id: common_setup
-        uses: fortio/workflows/.github/actions/common_setup@main
+        uses: fortio/workflows/.github/actions/common_setup@pin
         with:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
