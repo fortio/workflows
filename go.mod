@@ -1,8 +1,8 @@
 module fortio.org/workflows
 
-go 1.22
+go 1.21
 
-toolchain go1.22.2 // this shouldn't be necessary - see https://github.com/golang/go/issues/66175#issuecomment-2010343876
+// toolchain go1.22.2 // this shouldn't be necessary - see https://github.com/golang/go/issues/66175#issuecomment-2010343876
 
 require fortio.org/scli v1.14.2
 
