@@ -44,7 +44,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # pin@v5
         with:
-          go-version: '1.21'
+          go-version: '1.22'
           check-latest: true
       - name: Download goreleaser config
         run: curl -fsS -o .goreleaser.yaml https://raw.githubusercontent.com/fortio/workflows/main/goreleaser.yaml
