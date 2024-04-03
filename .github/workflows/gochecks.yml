@@ -17,7 +17,7 @@ jobs:
       - name: Setup Go environment
         uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # pin@v5
         with:
-          go-version: '1.21'
+          go-version: '1.22'
           check-latest: true
       - name: Run Vulncheck
         run: |
@@ -30,4 +30,6 @@ jobs:
       - name: Optional init
         run: make dependencies || true # Used in fortio for instance to prep for go tests
       - name: Run tests with race detector
-        run: go test -race ./...
+        run: |
+          go run . buildinfo # to also confirm go toolchain version used
+          go test -race ./...
