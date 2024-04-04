@@ -31,5 +31,6 @@ jobs:
         run: make dependencies || true # Used in fortio for instance to prep for go tests
       - name: Run tests with race detector
         run: |
-          go run . buildinfo # to also confirm go toolchain version used
+          go version
+          go run . buildinfo || true # to also confirm go toolchain version used
           go test -race ./...
