@@ -87,7 +87,8 @@ linters:
     - nlreturn
     - gochecknoinits
     - gochecknoglobals
-    - gomnd
+    - gomnd # still there though renamed to mnd https://github.com/golangci/golangci-lint/issues/4741
+    - mnd
     - testpackage
     - wrapcheck
     - exhaustivestruct
@@ -127,6 +128,7 @@ issues:
         - nosnakecase
         - noctx
         - goconst
+        - err113
 
     # Exclude lll issues for long lines with go:generate
     - linters:
@@ -134,6 +136,7 @@ issues:
       source: "^//go:generate "
     - linters:
         - goerr113
+        - err113
       text: "do not define dynamic errors"
     - linters:
         - govet
