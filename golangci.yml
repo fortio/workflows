@@ -83,7 +83,6 @@ linters:
     - nosnakecase
     - deadcode
     - gomnd
-    - goerr113
     # Weird/bad ones:
     - wsl
     - nlreturn
