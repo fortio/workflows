@@ -82,12 +82,13 @@ linters:
     - structcheck
     - nosnakecase
     - deadcode
+    - gomnd
+    - goerr113
     # Weird/bad ones:
     - wsl
     - nlreturn
     - gochecknoinits
     - gochecknoglobals
-    - gomnd # still there though renamed to mnd https://github.com/golangci/golangci-lint/issues/4741
     - mnd
     - testpackage
     - wrapcheck
@@ -135,7 +136,6 @@ issues:
         - lll
       source: "^//go:generate "
     - linters:
-        - goerr113
         - err113
       text: "do not define dynamic errors"
     - linters:
