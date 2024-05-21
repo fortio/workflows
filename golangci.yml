@@ -28,8 +28,6 @@ linters-settings:
     # check all top-level comments, not only declarations
     check-all: false
   govet:
-    # report about shadowed variables
-    shadow: true
     # settings per analyzer
     settings:
       printf: # analyzer name, run `go tool vet help` to see all analyzers
@@ -74,14 +72,6 @@ linters:
     # bad ones:
     - musttag
     # Deprecated ones:
-    - scopelint
-    - golint
-    - interfacer
-    - maligned
-    - varcheck
-    - structcheck
-    - nosnakecase
-    - deadcode
     - gomnd
     # Weird/bad ones:
     - wsl
