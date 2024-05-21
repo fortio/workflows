@@ -78,3 +78,6 @@ for each action:
 ```
 pin-github-action .github/workflows/...yml
 ```
+
+
+Note about `golangci-lint` make sure to run locally `make` before MRs (see also https://github.com/fortio/workflows/issues/38)
