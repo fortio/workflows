@@ -22,3 +22,6 @@ go.work
 
 # downloaded file
 .goreleaser.yaml
+
+# mac
+.DS_Store
