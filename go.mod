@@ -1,4 +1,4 @@
-module fortio.org/workflows
+module github.com/fortio/workflows
 
 go 1.21
 
