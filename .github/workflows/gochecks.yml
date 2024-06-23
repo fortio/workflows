@@ -27,10 +27,14 @@ jobs:
         run: curl -fsS -o .golangci.yml https://raw.githubusercontent.com/fortio/workflows/main/golangci.yml
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@a4f60bb28d35aeee14e6880718e0c85ff1882e64 # pin@v6
-      - name: Optional init
-        run: make dependencies || true # Used in fortio for instance to prep for go tests
-      - name: Run tests with race detector
+      - name: Run tests
         run: |
           go version
           go run . buildinfo || true # to also confirm go toolchain version used
-          go test -race ./...
+          if make -n test &>/dev/null; then
+            echo "Running tests with make test"
+            make test
+          else
+            echo "No Makefile test target, running tests with race detection as default behavior"
+            go test -race ./...
+          fi
