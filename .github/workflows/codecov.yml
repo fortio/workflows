@@ -2,6 +2,9 @@ name: "Code Coverage"
 
 on:
   workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        required: true
   push:
     branches: [ main ]
   pull_request:
@@ -20,6 +23,6 @@ jobs:
         run: make dependencies || true # Used in fortio for instance to prep for go tests
       - name: Run test coverage
         run: go test -coverprofile=coverage.out ./...
-      - uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # pin@v3
+      - uses: codecov/codecov-action@54bcd8715eee62d40e33596ef5e8f0f48dbbccab # pin@v4
         with:
           files: coverage.out
