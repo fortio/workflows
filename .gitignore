@@ -25,3 +25,5 @@ go.work
 
 # mac
 .DS_Store
+# go releaser
+dist/
