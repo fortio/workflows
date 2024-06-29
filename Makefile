@@ -6,4 +6,9 @@ validate:
 	golangci-lint config verify --config golangci.yml
 	golangci-lint run --config golangci.yml
 
-.PHONY: validate test
+
+check:
+	goreleaser check
+	TAP_DESCRIPTION=test goreleaser release --clean --snapshot
+
+.PHONY: validate test check

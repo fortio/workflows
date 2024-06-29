@@ -23,6 +23,12 @@ changelog:
 gomod:
   proxy: true
   mod: mod
+archives:
+  - format_overrides:
+    - goos: windows
+      format: zip
+    - goos: darwin
+      format: zip
 dockers:
   - image_templates: ["fortio/{{ .ProjectName }}:{{ .Version }}-amd64"]
     use: buildx
