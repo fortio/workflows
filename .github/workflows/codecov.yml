@@ -16,10 +16,15 @@ jobs:
         with:
           go-version: '1.22'
           check-latest: true
-      - name: Optional init
-        run: make dependencies || true # Used in fortio for instance to prep for go tests
       - name: Run test coverage
-        run: go test -coverprofile=coverage.out ./...
+        run: |
+          if make -n coverage &>/dev/null; then
+            echo "Running coverage through make"
+            make coverage
+          else
+            echo "No Makefile coverage target, using default behavior"
+            go test -coverprofile=coverage.out ./...
+          fi
       - uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # pin@v3
         with:
           files: coverage.out
