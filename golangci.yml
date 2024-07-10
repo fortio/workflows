@@ -73,6 +73,7 @@ linters:
     - musttag
     # Deprecated ones:
     - gomnd
+    - execinquery
     # Weird/bad ones:
     - wsl
     - nlreturn
@@ -81,7 +82,6 @@ linters:
     - mnd
     - testpackage
     - wrapcheck
-    - exhaustivestruct
     - tagliatelle
     - nonamedreturns
     - varnamelen
@@ -90,7 +90,6 @@ linters:
     - paralleltest
     - thelper
     - forbidigo
-    - ifshort
     - wastedassign
     - cyclop
     - forcetypeassert
