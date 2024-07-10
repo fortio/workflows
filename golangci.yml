@@ -58,6 +58,7 @@ linters-settings:
     max-func-lines: 30
   nolintlint:
     require-specific: true
+    # require-explanation: true # add this when we fix it/review nolints in fortio/fortio
   whitespace:
     multi-if: false   # Enforces newlines (or comments) after every multi-line if statement
     multi-func: false # Enforces newlines (or comments) after every multi-line function signature
@@ -73,6 +74,9 @@ linters:
     - musttag
     # Deprecated ones:
     - gomnd
+    - execinquery
+    # Redundant ones:
+    - gofmt # we use gofumpt
     # Weird/bad ones:
     - wsl
     - nlreturn
@@ -81,7 +85,6 @@ linters:
     - mnd
     - testpackage
     - wrapcheck
-    - exhaustivestruct
     - tagliatelle
     - nonamedreturns
     - varnamelen
@@ -90,7 +93,6 @@ linters:
     - paralleltest
     - thelper
     - forbidigo
-    - ifshort
     - wastedassign
     - cyclop
     - forcetypeassert
