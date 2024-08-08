@@ -70,6 +70,8 @@ linters-settings:
 
 linters:
   disable:
+    # can't get it to accept //nolint so... have to disable it
+    - gomoddirectives
     # bad ones:
     - musttag
     # Deprecated ones:
