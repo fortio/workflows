@@ -39,7 +39,7 @@ jobs:
         run: |
           choco install git
           echo "Git Bash installed"
-          shell: pwsh
+        shell: pwsh
         if: runner.os == 'Windows'
       - name: Run tests
         run: |
