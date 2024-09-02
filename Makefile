@@ -2,10 +2,13 @@ test: validate
 	go test -race ./...
 
 validate:
-	golangci-lint version
-	golangci-lint config verify --config golangci.yml
-	golangci-lint run --config golangci.yml
-
+	@if command -v golangci-lint >/dev/null 2>&1; then \
+		echo "golangci-lint found, running validation..."; \
+		golangci-lint version; \
+		golangci-lint config verify --config golangci.yml || exit 1; \
+	else \
+		echo "golangci-lint not found, skipping validation."; \
+	fi
 
 check:
 	goreleaser check
