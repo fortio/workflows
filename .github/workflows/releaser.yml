@@ -8,6 +8,16 @@ on:
         required: false
         type: string
         default: ''
+      binary_name:
+        description: 'Name of the binary to be released'
+        required: false
+        type: string
+        default: ${{ github.event.repository.name }}
+      main_path:
+        description: 'Path to the binary main package, eg ./cmd/foo'
+        required: false
+        type: string
+        default: "."
     secrets:
       DOCKER_USER:
         required: true
@@ -59,3 +69,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           TAP_DESCRIPTION: ${{ inputs.description }}
           GOWORK: off
+          BINARY_NAME: ${{ inputs.binary_name }}
+          MAIN_PATH: ${{ inputs.main_path }}

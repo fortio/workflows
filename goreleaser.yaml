@@ -10,6 +10,8 @@ builds:
     goarch:
       - amd64
       - arm64
+    main: "{{ .Env.MAIN_PATH }}"
+    binary: "{{ .Env.BINARY_NAME }}"
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -30,27 +32,27 @@ archives:
     - goos: darwin
       format: zip
 dockers:
-  - image_templates: ["fortio/{{ .ProjectName }}:{{ .Version }}-amd64"]
+  - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64"]
     use: buildx
     goarch: amd64
     build_flag_templates:
     - --platform=linux/amd64
-  - image_templates: ["fortio/{{ .ProjectName }}:{{ .Version }}-arm64"]
+  - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-arm64"]
     use: buildx
     goarch: arm64
     build_flag_templates:
     - --platform=linux/arm64
 docker_manifests:
 -
-  name_template: fortio/{{ .ProjectName }}:{{ .Version }}
+  name_template: fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}
   image_templates:
-  - fortio/{{ .ProjectName }}:{{ .Version }}-amd64
-  - fortio/{{ .ProjectName }}:{{ .Version }}-arm64
+  - fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64
+  - fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-arm64
 -
-  name_template: fortio/{{ .ProjectName }}:latest
+  name_template: fortio/{{ .Env.BINARY_NAME }}:latest
   image_templates:
-  - fortio/{{ .ProjectName }}:{{ .Version }}-amd64
-  - fortio/{{ .ProjectName }}:{{ .Version }}-arm64
+  - fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64
+  - fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-arm64
 release:
   prerelease: auto
   mode: append
@@ -69,7 +71,7 @@ brews:
       email: bot@goreleaser.com
 
     # The project name and current git tag are used in the format string.
-    commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+    commit_msg_template: "Brew formula update for {{ .Env.BINARY_NAME }} version {{ .Tag }}"
 
     # Folder inside the repository to put the formula.
     # Default is the root folder.
@@ -90,4 +92,4 @@ brews:
     # So you can `brew test` your formula.
     # Default is empty.
     test: |
-      assert_match version.to_s, shell_output("#{bin}/{{ .ProjectName }} -version")
+      assert_match version.to_s, shell_output("#{bin}/{{ .Env.BINARY_NAME }} -version")
