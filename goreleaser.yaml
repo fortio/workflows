@@ -86,6 +86,9 @@ brews:
     # Default is empty.
     description: "{{ .Env.TAP_DESCRIPTION }}"
 
+    # Fix the name to match the binary.
+    name: "{{ .Env.BINARY_NAME }}"
+
     # SPDX identifier of your app's license.
     # Default is empty.
     license: "Apache-2.0"
