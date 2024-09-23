@@ -31,6 +31,7 @@ archives:
       format: zip
     - goos: darwin
       format: zip
+    name_template: "{{ .Env.BINARY_NAME }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"  # Use the custom binary name for the archive
 dockers:
   - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64"]
     use: buildx
