@@ -12,6 +12,6 @@ validate:
 
 check:
 	goreleaser check
-	TAP_DESCRIPTION=test goreleaser release --clean --snapshot
+	MAIN_PATH=./testing/workflow_test BINARY_NAME=workflow_test TAP_DESCRIPTION=test goreleaser release --clean --snapshot
 
 .PHONY: validate test check

@@ -33,6 +33,9 @@ jobs:
         with:
             ### *** Don't forget to update this: *** ###
             description: "Fortio ...update description...."
+            # Optional:
+            # main_path: for binaries not in "."
+            # binary_name: for a name different than the default (which project name)
         secrets:
             GH_PAT: ${{ secrets.GH_PAT }}
             DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
