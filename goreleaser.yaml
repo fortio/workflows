@@ -1,5 +1,6 @@
 version: 2
 
+
 builds:
   - env:
       - CGO_ENABLED=0
@@ -13,7 +14,7 @@ builds:
     main: "{{ .Env.MAIN_PATH }}"
     binary: "{{ .Env.BINARY_NAME }}"
 checksum:
-  name_template: "checksums.txt"
+  name_template: "checksums_{{ .Env.BINARY_NAME }}.txt"
 snapshot:
   version_template: "{{ incpatch .Version }}-next"
 changelog:
@@ -34,11 +35,13 @@ archives:
     name_template: "{{ .Env.BINARY_NAME }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"  # Use the custom binary name for the archive
 dockers:
   - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64"]
+    dockerfile: "{{ .Env.DOCKERFILE }}"
     use: buildx
     goarch: amd64
     build_flag_templates:
     - --platform=linux/amd64
   - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-arm64"]
+    dockerfile: "{{ .Env.DOCKERFILE }}"
     use: buildx
     goarch: arm64
     build_flag_templates:
@@ -57,7 +60,6 @@ docker_manifests:
 release:
   prerelease: auto
   mode: append
-# .goreleaser.yaml
 brews:
   -
     # GitHub/GitLab repository to push the formula to
