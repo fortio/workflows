@@ -18,6 +18,11 @@ on:
         required: false
         type: string
         default: "."
+      dockerfile:
+        description: 'Path to the Dockerfile to be used for the release (for multi binary projects)'
+        required: false
+        type: string
+        default: "./Dockerfile"
     secrets:
       DOCKER_USER:
         required: true
@@ -71,3 +76,4 @@ jobs:
           GOWORK: off
           BINARY_NAME: ${{ inputs.binary_name }}
           MAIN_PATH: ${{ inputs.main_path }}
+          DOCKERFILE: ${{ inputs.dockerfile }}

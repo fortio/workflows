@@ -34,11 +34,13 @@ archives:
     name_template: "{{ .Env.BINARY_NAME }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"  # Use the custom binary name for the archive
 dockers:
   - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-amd64"]
+    dockerfile: "{{ .Env.DOCKERFILE }}"
     use: buildx
     goarch: amd64
     build_flag_templates:
     - --platform=linux/amd64
   - image_templates: ["fortio/{{ .Env.BINARY_NAME }}:{{ .Version }}-arm64"]
+    dockerfile: "{{ .Env.DOCKERFILE }}"
     use: buildx
     goarch: arm64
     build_flag_templates:
