@@ -79,6 +79,7 @@ linters:
     # Redundant ones:
     - gofmt # we use gofumpt
     # Weird/bad ones:
+    - mnd
     - wsl
     - nlreturn
     - gochecknoinits

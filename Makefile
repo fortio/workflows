@@ -6,6 +6,7 @@ validate:
 		echo "golangci-lint found, running validation..."; \
 		golangci-lint version; \
 		golangci-lint config verify --config golangci.yml || exit 1; \
+		golangci-lint run --config golangci.yml || exit 1; \
 	else \
 		echo "golangci-lint not found, skipping validation."; \
 	fi
