@@ -75,8 +75,6 @@ linters:
     # bad ones:
     - musttag
     # Deprecated ones:
-    - gomnd
-    - execinquery
     - exportloopref
     # Redundant ones:
     - gofmt # we use gofumpt
@@ -85,7 +83,6 @@ linters:
     - nlreturn
     - gochecknoinits
     - gochecknoglobals
-    - mnd
     - testpackage
     - wrapcheck
     - tagliatelle
