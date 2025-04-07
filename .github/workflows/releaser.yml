@@ -23,6 +23,11 @@ on:
         required: false
         type: string
         default: "./Dockerfile"
+      mod_dir:
+          description: 'Path to the go.mod to be used for the release (for multi go.mod projects)'
+          required: false
+          type: string
+          default: "./"
     secrets:
       DOCKER_USER:
         required: true
@@ -77,3 +82,4 @@ jobs:
           BINARY_NAME: ${{ inputs.binary_name }}
           MAIN_PATH: ${{ inputs.main_path }}
           DOCKERFILE: ${{ inputs.dockerfile }}
+          MOD_DIR: ${{ inputs.mod_dir }}

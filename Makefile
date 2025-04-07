@@ -13,6 +13,6 @@ validate:
 
 check:
 	goreleaser check
-	DOCKERFILE=./Dockerfile.elsewhere MAIN_PATH=./testing/workflow_test BINARY_NAME=workflow_test TAP_DESCRIPTION=test goreleaser release --clean --snapshot
+	MOD_DIR=./ DOCKERFILE=./Dockerfile.elsewhere MAIN_PATH=./testing/workflow_test BINARY_NAME=workflow_test TAP_DESCRIPTION=test goreleaser release --clean --snapshot
 
 .PHONY: validate test check

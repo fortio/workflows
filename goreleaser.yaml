@@ -13,6 +13,7 @@ builds:
       - arm64
     main: "{{ .Env.MAIN_PATH }}"
     binary: "{{ .Env.BINARY_NAME }}"
+    dir : "{{ .Env.MOD_DIR }}"
 checksum:
   name_template: "checksums_{{ .Env.BINARY_NAME }}.txt"
 snapshot:
