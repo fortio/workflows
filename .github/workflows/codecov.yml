@@ -27,7 +27,7 @@ jobs:
             echo "No Makefile coverage target, using default behavior"
             go test -coverprofile=coverage.out ./...
           fi
-      - uses: codecov/codecov-action@0565863a31f2c772f9f0395002a31e3f06189574 # pin@v4
+      - uses: codecov/codecov-action@ad3126e916f78f00edff4ed0317cf185271ccc2d # pin@v4
         with:
           files: coverage.out
           token: ${{ secrets.CODECOV_TOKEN }}
