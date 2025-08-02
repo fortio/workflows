@@ -34,7 +34,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         uses: golangci/golangci-lint-action@ec5d18412c0aeab7936cb16880d708ba2a64e1ae # pin@v6
         with:
-          version: v1.62.0
+          version: v1.62.2
 # Both make and bash are present in current windows-latest
 #      - name: Install Git Bash
 #        run: |
