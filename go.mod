@@ -1,6 +1,7 @@
 module github.com/fortio/workflows
 
-go 1.21
+// Just to test linters, we don't actually require anything recent here.
+go 1.24
 
 // toolchain go1.22.3 // this shouldn't be necessary - see https://github.com/golang/go/issues/66175#issuecomment-2010343876
 
