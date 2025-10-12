@@ -34,7 +34,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         uses: golangci/golangci-lint-action@4afd733a84b1f43292c63897423277bb7f4313a9 # pin@v8
         with:
-          version: v2.3.1
+          version: v2.5.0
       - name: Run tests
         run: |
           go version
