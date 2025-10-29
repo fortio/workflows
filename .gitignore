@@ -27,3 +27,4 @@ go.work
 .DS_Store
 # go releaser
 dist/
+.golangci.yml
