@@ -1,10 +1,10 @@
 #! /bin/bash
 
-SED=gsed
-if ! command -v gsed &> /dev/null
+SED="gsed"
+if ! command -v $SED &> /dev/null
 then
     echo "gsed could not be found, falling back to sed, might not work on macOS"
-    SED=sed
+    SED="sed"
 fi
 
 # Make sure website directory exists
@@ -14,13 +14,16 @@ if [ ! -d "./website" ]; then
     exit 1
 fi
 
-set -x -e
 
 # Enter the name of the new repository
-read -p "Enter the name of the new repository: " REPO_NAME
+read -r -p "Enter the name of the new repository: " REPO_NAME
 
 # Enter a short description for the repository
-read -p "Enter a short description for the repository: " REPO_DESC
+read -r -p "Enter a short description for the repository: " REPO_DESC
+
+echo "Creating repository '$REPO_NAME' with description '$REPO_DESC'"
+
+set -x -e
 
 # Create the new repository using GitHub CLI using our template repository
 gh repo create "$REPO_NAME" --description "$REPO_DESC" --template "fortio/template" --public
@@ -33,6 +36,7 @@ cd "$REPO_NAME"
 cp ../website/NAME.md ../website/"$REPO_NAME".md
 
 # Change NAME to $REPO_NAME in all files
+# shellcheck disable=SC2046
 $SED  -i -e "s/NAME/$REPO_NAME/g" -e "s/DESCRIPTION/$REPO_DESC/g" $(git ls-files) ../website/"$REPO_NAME".md
 
 (cd ../website && git add "$REPO_NAME".md && git commit -m "Add $REPO_NAME to website" && git push)
