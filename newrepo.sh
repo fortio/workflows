@@ -50,7 +50,7 @@ git commit -m "Initial commit for $REPO_NAME"
 git push origin main
 
 # Create repository ruleset for main branch protection
-gh api -X POST repos/$FULL_REPO_NAME/rulesets \
+gh api -X POST "repos/$FULL_REPO_NAME/rulesets" \
   -H "Accept: application/vnd.github+json" \
   --input - <<EOF
 {
