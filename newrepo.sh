@@ -54,7 +54,7 @@ gh api -X POST "repos/$FULL_REPO_NAME/rulesets" \
   -H "Accept: application/vnd.github+json" \
   --input - <<EOF
 {
-  "name": "Main branch protection",
+  "name": "Main branch protection ruleset",
   "target": "branch",
   "enforcement": "active",
   "bypass_actors": [],
@@ -84,24 +84,13 @@ gh api -X POST "repos/$FULL_REPO_NAME/rulesets" \
     },
     {
       "type": "non_fast_forward"
-    },
-    {
-      "type": "code_scanning",
-      "parameters": {
-        "code_scanning_tools": [
-          {
-            "tool": "copilot_code_review",
-            "security_alerts_threshold": "none",
-            "alerts_threshold": "none"
-          }
-        ]
-      }
     }
   ]
 }
 EOF
 
-# Allow squash only
+
+# Allow squash only (redundant with ruleset but kept for clarity)
 gh api -X PATCH "repos/$FULL_REPO_NAME" \
   -F allow_merge_commit=false \
   -F allow_rebase_merge=false \
