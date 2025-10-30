@@ -94,7 +94,8 @@ EOF
 gh api -X PATCH "repos/$FULL_REPO_NAME" \
   -F allow_merge_commit=false \
   -F allow_rebase_merge=false \
-  -F allow_squash_merge=true
+  -F allow_squash_merge=true \
+  -F delete_branch_on_merge=true
 
 gh repo edit "$FULL_REPO_NAME" --allow-update-branch=true
 
