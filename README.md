@@ -84,3 +84,8 @@ pin-github-action .github/workflows/...yml
 
 
 Note about `golangci-lint` make sure to run locally `make` before MRs (see also https://github.com/fortio/workflows/issues/38)
+
+
+## Newrepo tool
+
+See [newrepo.sh](newrepo.sh) to create a new repo under fortio/
