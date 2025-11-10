@@ -6,7 +6,7 @@ go 1.24
 // toolchain go1.22.3 // this shouldn't be necessary - see https://github.com/golang/go/issues/66175#issuecomment-2010343876
 
 require (
-	fortio.org/log v1.18.1
+	fortio.org/log v1.18.2
 	fortio.org/scli v1.18.1
 )
 
