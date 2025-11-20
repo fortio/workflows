@@ -28,3 +28,4 @@ go.work
 # go releaser
 dist/
 .golangci.yml
+.gr

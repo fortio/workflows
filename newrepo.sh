@@ -18,6 +18,12 @@ fi
 # Enter the name of the new repository
 read -r -p "Enter the name of the new repository: " REPO_NAME
 
+# Make sure the name / directory doesn't already exists (or gh repo will fail midway)
+if [ -d "./$REPO_NAME" ]; then
+    echo "Directory ./$REPO_NAME already exists! Please choose a different repository name."
+    exit 1
+fi
+
 # Enter a short description for the repository
 read -r -p "Enter a short description for the repository: " REPO_DESC
 
