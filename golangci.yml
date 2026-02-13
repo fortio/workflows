@@ -86,7 +86,7 @@ linters:
       multi-if: false
       multi-func: false
     revive:
-      enable-default: true
+      enable-default-rules: true
       rules:
         - name: var-naming
           arguments:
