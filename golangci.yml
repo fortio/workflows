@@ -85,6 +85,14 @@ linters:
     whitespace:
       multi-if: false
       multi-func: false
+    revive:
+      enable-default: true
+      rules:
+        - name: var-naming
+          arguments:
+           - []
+           - []
+           - - skip-package-name-collision-with-go-std: true
   exclusions:
     generated: lax
     presets:
