@@ -8,6 +8,7 @@ linters:
     - exhaustruct # seems like a good idea at first but actually a pain and go does have zero values for a reason.
     - gochecknoglobals
     - gochecknoinits
+    - gomodguard # warning about v2
     # can't get it to accept //nolint so... have to disable it
     - gomoddirectives
     - mnd
@@ -34,6 +35,7 @@ linters:
     - noinlineerr # prize for worst linter ever
     - embeddedstructfieldcheck
     - gosmopolitan
+    - exhaustruct_v5
   settings:
     staticcheck:
       # dot-import-whitelist: [] # Note: not yet working
