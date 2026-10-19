@@ -22,3 +22,8 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    groups:
+      # codeql init/autobuild/analyze must stay on the same version
+      codeql:
+        patterns:
+          - "github/codeql-action*"
