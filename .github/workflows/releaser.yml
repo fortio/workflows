@@ -23,6 +23,16 @@ on:
         required: false
         type: string
         default: "./Dockerfile"
+      darwin_cgo:
+        description: 'Build the macOS binaries with cgo (cross compiled in the goreleaser-cross image, slower; eg for macOS frameworks)'
+        required: false
+        type: boolean
+        default: false
+      cross_version:
+        description: 'goreleaser-cross image tag (Go version) used when darwin_cgo is true'
+        required: false
+        type: string
+        default: "v1.26.10"
     secrets:
       DOCKER_USER:
         required: true
@@ -63,13 +73,36 @@ jobs:
           check-latest: true
       - name: Download goreleaser config
         run: curl -fsS -o .goreleaser.yaml https://raw.githubusercontent.com/fortio/workflows/main/goreleaser.yaml # same use branch for testing instead of main in #38
+      # darwin_cgo: darwin built separately with cgo (osxcross compilers of the goreleaser-cross image).
+      - name: Darwin cgo goreleaser config
+        if: inputs.darwin_cgo
+        run: |
+          yq -i '.builds[0].id = "default" | .builds[0].goos = (.builds[0].goos - ["darwin"]) |
+            .builds += [.builds[0] | .id = "darwin-amd64" | .goos = ["darwin"] | .goarch = ["amd64"] |
+              .env = ["CGO_ENABLED=1", "CC=o64-clang", "CXX=o64-clang++"]] |
+            .builds += [.builds[0] | .id = "darwin-arm64" | .goos = ["darwin"] | .goarch = ["arm64"] |
+              .env = ["CGO_ENABLED=1", "CC=oa64-clang", "CXX=oa64-clang++"]]' .goreleaser.yaml
+          cat .goreleaser.yaml
       - name: "GoReleaser Action"
         uses: goreleaser/goreleaser-action@a4f02ab5355a589de60d917a659ce617ed19b3de # pin@v7.3.0
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') && !inputs.darwin_cgo
         with:
           distribution: goreleaser
           version: latest
           args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          TAP_DESCRIPTION: ${{ inputs.description }}
+          GOWORK: off
+          BINARY_NAME: ${{ inputs.binary_name }}
+          MAIN_PATH: ${{ inputs.main_path }}
+          DOCKERFILE: ${{ inputs.dockerfile }}
+      - name: "GoReleaser in goreleaser-cross (darwin_cgo)"
+        if: startsWith(github.ref, 'refs/tags/') && inputs.darwin_cgo
+        run: |
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME/.docker:/root/.docker" \
+            -v "$PWD:/src" -w /src -e GITHUB_TOKEN -e TAP_DESCRIPTION -e GOWORK -e BINARY_NAME -e MAIN_PATH \
+            -e DOCKERFILE "ghcr.io/goreleaser/goreleaser-cross:${{ inputs.cross_version }}" release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           TAP_DESCRIPTION: ${{ inputs.description }}
